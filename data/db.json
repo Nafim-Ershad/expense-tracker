@@ -1,0 +1,123 @@
+{
+  "budget": [
+    {
+      "id": "1",
+      "itemName": "Cookies",
+      "amount": 20.05,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": true
+    },
+    {
+      "id": "2",
+      "itemName": "Gloves",
+      "amount": 12.32,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": true
+    },
+    {
+      "id": "3",
+      "itemName": "Butter",
+      "amount": 5,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": true
+    },
+    {
+      "id": "4",
+      "itemName": "Chocolates",
+      "amount": 7,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": true
+    },
+    {
+      "id": "5",
+      "itemName": "Cookies",
+      "amount": 20.5,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": true
+    },
+    {
+      "id": "6",
+      "itemName": "Wage",
+      "amount": 1200,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": false
+    },
+    {
+      "id": "7",
+      "itemName": "Loan",
+      "amount": 500,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": false
+    },
+    {
+      "id": "8",
+      "itemName": "Side Business",
+      "amount": 250,
+      "date": "Sun Apr 14 2024 01:04:18 GMT+0600 (Bangladesh Standard Time)",
+      "isExpense": false
+    },
+    {
+      "id": "7414",
+      "itemName": "Pokemon Cards",
+      "amount": 12.05,
+      "isExpense": true,
+      "date": "Mon Apr 15 2024 02:24:22 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": "5552",
+      "itemName": "Streaming",
+      "amount": 550,
+      "isExpense": false,
+      "date": "Mon Apr 15 2024 02:24:39 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": "7091",
+      "itemName": "Buy Milk",
+      "amount": 10,
+      "isExpense": true,
+      "date": "Mon Apr 15 2024 02:29:44 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": "1568",
+      "itemName": "Tuition",
+      "amount": 35,
+      "isExpense": false,
+      "date": "Mon Apr 15 2024 02:33:33 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": "2663",
+      "itemName": "Car",
+      "amount": 25,
+      "isExpense": true,
+      "date": "Mon Apr 15 2024 02:34:54 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": "6696",
+      "itemName": "Insurance",
+      "amount": 200,
+      "isExpense": false,
+      "date": "Mon Apr 15 2024 23:03:24 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": "9116",
+      "itemName": "Mojo",
+      "amount": 1,
+      "isExpense": true,
+      "date": "Mon Apr 15 2024 23:31:33 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": 2191,
+      "itemName": "BFC",
+      "amount": 1516,
+      "isExpense": true,
+      "date": "Wed Apr 17 2024 21:20:44 GMT+0600 (Bangladesh Standard Time)"
+    },
+    {
+      "id": 8567,
+      "itemName": "Something from Dad",
+      "amount": 500,
+      "isExpense": false,
+      "date": "Wed Apr 17 2024 21:22:45 GMT+0600 (Bangladesh Standard Time)"
+    }
+  ]
+}
