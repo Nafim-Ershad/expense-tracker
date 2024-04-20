@@ -4,7 +4,10 @@
       <span class="material-symbols-outlined"> keyboard_arrow_right </span>
     </RouterLink>
     <div class="tracker-container">
-      <div class="total-amount">${{ getTotal }}</div>
+      <div class="total-amount">
+        <h6>Total Cash:</h6>
+        <h4>${{ getTotal }}</h4>
+      </div>
       <IncomeExpenseComponent />
       <HistoryContainerComponent :isLoading="isLoading" :budgets="budget" />
     </div>
@@ -68,8 +71,9 @@ section {
       height: 80px;
       margin: 15px 0 15px 25px;
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
       font-size: 40px;
     }
   }

@@ -1,10 +1,18 @@
 import { defineStore } from 'pinia'
 
+import { supabase } from '@/lib/supabaseClient'
+
 export type BudgetType = {
   id: number
   itemName: string
   amount: number
-  date: string
+  created_at: string
+  isExpense: boolean
+}
+
+export type AddType = {
+  itemName: string
+  amount: number
   isExpense: boolean
 }
 
@@ -21,14 +29,18 @@ export const useBudgetStore = defineStore('budgetStore', {
     showAdder: false
   }),
   getters: {
-    async getAll() {
+    async getAll(): Promise<void> {
       this.isLoading = true
 
       try {
-        const response = await fetch('http://localhost:3000/budget')
-        const data = await response.json()
+        const { data } = await supabase.from('budgets').select()
 
-        this.budget = data
+        if (data) {
+          this.budget = data
+        } else {
+          this.isLoading = false
+          throw Error('No data')
+        }
       } catch (err: any) {
         console.log(err.message)
       } finally {
@@ -61,17 +73,27 @@ export const useBudgetStore = defineStore('budgetStore', {
     }
   },
   actions: {
-    async addNewTrack(item: BudgetType): Promise<void> {
-      this.budget.push(item)
+    async addNewTrack(item: AddType): Promise<void> {
+      const { data, error } = await supabase
+        .from('budgets')
+        .insert([{ itemName: item.itemName, amount: item.amount, isExpense: item.isExpense }])
+        .select()
 
+      if (data) {
+        data.forEach((el) => this.budget.push(el))
+      }
+      if (error) {
+        throw Error(error.message)
+      }
+    },
+
+    async deleteTask(itemId: number) {
       try {
-        await fetch('http://localhost:3000/budget', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(item)
-        })
+        await supabase.from('budgets').delete().eq('id', itemId)
+
+        this.budget = this.budget.filter((el) => el.id !== itemId)
       } catch (err: any) {
-        console.log(err.message)
+        throw Error(err.message)
       }
     },
     changeAdderVisibility(): void {

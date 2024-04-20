@@ -40,11 +40,9 @@ export default defineComponent({
 
     const handleSubmit = (): void => {
       budgetStore.addNewTrack({
-        id: Math.round(Math.random() * 10000),
         itemName: itemName.value,
         amount: amount.value,
-        isExpense: isExpense.value,
-        date: Date()
+        isExpense: isExpense.value
       })
 
       itemName.value = ''

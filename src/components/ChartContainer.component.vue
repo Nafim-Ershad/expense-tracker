@@ -1,17 +1,26 @@
 <template>
   <div class="chart-container">
-    <PieChartComponent />
+    <ChartComponent :data="dataSet" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import PieChartComponent from './PieChart.component.vue'
+import { defineComponent, ref } from 'vue'
+import { useBudgetStore } from '@/stores/Store'
+import { storeToRefs } from 'pinia'
+
+import ChartComponent from './Chart.component.vue'
 
 export default defineComponent({
-  components: { PieChartComponent },
+  components: { ChartComponent },
   setup() {
-    return {}
+    const budgetStore = useBudgetStore()
+
+    const { getTotalExpense, getTotalIncome } = storeToRefs(budgetStore)
+
+    const dataSet = ref([getTotalExpense, getTotalIncome])
+
+    return { dataSet }
   }
 })
 </script>

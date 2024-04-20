@@ -7,6 +7,8 @@
 Vue
 Pinia
 
+_Shifted the backend to supabase_
+
 ## Project Setup
 
 ```sh

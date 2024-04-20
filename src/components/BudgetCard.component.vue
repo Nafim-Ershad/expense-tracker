@@ -1,5 +1,6 @@
 <template>
   <div class="budget-list" :class="budget.isExpense ? `expense` : `income`">
+    <span class="material-symbols-outlined delete" @click="deleteTask">close</span>
     <span>{{ budget.itemName }}</span>
     <span>{{ budget.amount.toFixed(2) }}</span>
   </div>
@@ -8,10 +9,18 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+import { useBudgetStore } from '@/stores/Store'
+
 export default defineComponent({
   props: ['budget'],
-  setup() {
-    return {}
+  setup(props) {
+    const budgetStore = useBudgetStore()
+
+    const deleteTask = () => {
+      budgetStore.deleteTask(props.budget.id)
+    }
+
+    return { deleteTask }
   }
 })
 </script>
@@ -36,6 +45,9 @@ div {
     display: flex;
     align-items: center;
     justify-content: center;
+    &.delete {
+      cursor: pointer;
+    }
   }
 }
 </style>
