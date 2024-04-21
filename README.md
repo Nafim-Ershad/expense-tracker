@@ -4,6 +4,8 @@
 
 ## Technologies used
 
+[Live](https://expense-tracker-nafimershad.vercel.app/)
+
 Vue
 Pinia
 
