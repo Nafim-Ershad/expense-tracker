@@ -1,6 +1,7 @@
 <template>
   <div class="history-container">
-    <div class="loading-screen" v-if="isLoading">Loading Data ...</div>
+    <!-- <div class="loading-screen" v-if="isLoading">Loading Data ...</div> -->
+    <LoadingWheelComponent v-if="isLoading" />
     <ListContainerComponent :loading="isLoading" :budgets="budgets" />
   </div>
 </template>
@@ -9,9 +10,10 @@
 import { defineComponent } from 'vue'
 
 import ListContainerComponent from './ListContainer.component.vue'
+import LoadingWheelComponent from './LoadingWheel.component.vue'
 
 export default defineComponent({
-  components: { ListContainerComponent },
+  components: { ListContainerComponent, LoadingWheelComponent },
   props: ['isLoading', 'budgets'],
   setup() {
     return {}
