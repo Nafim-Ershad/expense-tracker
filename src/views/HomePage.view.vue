@@ -1,37 +1,65 @@
 <template>
   <section>
-    <RouterLink to="/chart">
-      <span class="material-symbols-outlined"> keyboard_arrow_right </span>
-    </RouterLink>
-    <div class="tracker-container">
-      <div class="total-amount">
-        <h6>Total Cash:</h6>
-        <h4>${{ getTotal }}</h4>
-      </div>
-      <IncomeExpenseComponent />
-      <HistoryContainerComponent :isLoading="isLoading" :budgets="budget" />
+    <div class="card-container-small">
+      <ViewCardComponent
+        title="Total Income"
+        iconName="trending_up"
+        :value="totalIncome"
+        color="green"
+      />
+      <ViewCardComponent
+        title="Total Expense"
+        iconName="trending_down"
+        :value="totalExpense"
+        color="red"
+      />
+      <ViewCardComponent
+        title="Available Credit"
+        iconName="attach_money"
+        :value="totalMoney"
+        color="none"
+      />
+    </div>
+    <div class="card-container-big">
+      <ChartContainerComponent />
+      <ListContainerComponent :budgets="budget" :loading="isLoading" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
-import IncomeExpenseComponent from '@/components/IncomeExpense.component.vue'
-import HistoryContainerComponent from '@/components/HistoryContainer.component.vue'
-import { useBudgetStore } from '@/stores/Store'
+import { defineComponent, ref, type Ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
+import ViewCardComponent from '@/components/ViewCard.component.vue'
+// import IncomeExpenseComponent from '@/components/IncomeExpense.component.vue'
+// import HistoryContainerComponent from '@/components/HistoryContainer.component.vue'
+import ChartContainerComponent from '@/components/ChartContainer.component.vue'
+import ListContainerComponent from '@/components/ListContainer.component.vue'
+
+import { useBudgetStore } from '@/stores/Store'
+
 export default defineComponent({
-  components: { IncomeExpenseComponent, HistoryContainerComponent },
+  // components: { IncomeExpenseComponent, HistoryContainerComponent },
+  components: { ViewCardComponent, ChartContainerComponent, ListContainerComponent },
+  mounted: async () => {
+    await useBudgetStore().getAll
+  },
   setup() {
     const budgetStore = useBudgetStore()
-    const { isLoading, budget, getTotal } = storeToRefs(budgetStore)
+    const { isLoading, budget, getTotal, getTotalIncome, getTotalExpense } =
+      storeToRefs(budgetStore)
+
+    const totalIncome: Ref<number> = ref(getTotalIncome)
+    const totalExpense: Ref<number> = ref(getTotalExpense)
+    const totalMoney: Ref<number> = ref(getTotal)
 
     return {
       isLoading,
       budget,
-      getTotal
+      totalMoney,
+      totalIncome,
+      totalExpense
     }
   }
 })
@@ -40,42 +68,31 @@ export default defineComponent({
 <style scoped lang="scss">
 section {
   width: 100%;
-  height: calc(100vh - 85px);
-  position: relative;
+  height: 100vh;
+  padding: 1rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  a {
-    position: absolute;
-    right: 50px;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    span {
-      font-size: 55px;
-      font-weight: 700;
-      color: black;
-    }
-  }
-  .tracker-container {
+  justify-content: space-between;
+  gap: 1rem;
+  .card-container-small {
     width: 100%;
-    max-width: 350px;
-    height: 100%;
-    border: 2px solid black;
+    padding: 0.25rem 1rem;
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: flex-start;
-
-    .total-amount {
-      width: 100%;
-      height: 80px;
-      margin: 15px 0 15px 25px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      font-size: 40px;
-    }
+    gap: 2rem;
+  }
+  .card-container-big {
+    width: 100%;
+    height: 100%;
+    padding: 0.25rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 }
 </style>

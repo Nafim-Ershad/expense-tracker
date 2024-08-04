@@ -22,6 +22,12 @@ export interface BudgetOptions {
   showAdder: boolean
 }
 
+type CurrentTab = 'dashboard' | 'settings' | 'history'
+export interface OptionOptions {
+  extendedSideBar: boolean
+  currentTab: CurrentTab
+}
+
 export const useBudgetStore = defineStore('budgetStore', {
   state: (): BudgetOptions => ({
     budget: [],
@@ -33,13 +39,12 @@ export const useBudgetStore = defineStore('budgetStore', {
       this.isLoading = true
 
       try {
-        const { data } = await supabase.from('budgets').select()
-
+        const { data } = await supabase.from('budgets').select('*')
         if (data) {
-          this.budget = data
+          this.budget = [...data]
         } else {
           this.isLoading = false
-          throw Error('No data')
+          throw new Error('No data')
         }
       } catch (err: any) {
         console.log(err.message)
@@ -98,6 +103,22 @@ export const useBudgetStore = defineStore('budgetStore', {
     },
     changeAdderVisibility(): void {
       this.showAdder = !this.showAdder
+    }
+  }
+})
+
+export const useOptionsStore = defineStore('optionStore', {
+  state: (): OptionOptions => ({
+    extendedSideBar: true,
+    currentTab: 'dashboard'
+  }),
+  getters: {},
+  actions: {
+    changeSideBar(): void {
+      this.extendedSideBar = !this.extendedSideBar
+    },
+    setCurrentTab(value: CurrentTab): void {
+      this.currentTab = value
     }
   }
 })

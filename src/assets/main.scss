@@ -1,0 +1,26 @@
+@import './styles/_variable';
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $Roboto;
+}
+
+body {
+  max-width: 120rem;
+  overflow-x: hidden;
+}
+
+#app {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'wght' 100;
+}
