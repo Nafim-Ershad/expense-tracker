@@ -1,7 +1,17 @@
 <template>
   <div class="budget-list" :class="budget.isExpense ? `expense` : `income`">
     <span class="material-symbols-outlined delete" @click="deleteTask">close</span>
-    <span>{{ budget.itemName }}</span>
+    <span class="item-details">
+      <span class="item-name">{{ budget.itemName }}</span>
+      <span class="item-date-container">
+        <span class="item-time">
+          {{ new Date(budget.created_at).toLocaleTimeString() }}
+        </span>
+        <span class="item-date">
+          {{ new Date(budget.created_at).toLocaleDateString() }}
+        </span>
+      </span>
+    </span>
     <span>{{ numberWithCommas(budget.amount.toFixed(2)) }}</span>
   </div>
 </template>
@@ -51,8 +61,34 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
+    span {
+      margin: 0;
+    }
     &.delete {
       cursor: pointer;
+    }
+    &.item-details {
+      width: 70%;
+      padding: 0.3125rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .item-name {
+        font-weight: 600;
+        font-size: 1.125rem;
+      }
+      .item-date-container {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 300;
+        font-size: 0.75rem;
+        span {
+          margin: 0;
+        }
+      }
     }
   }
 }

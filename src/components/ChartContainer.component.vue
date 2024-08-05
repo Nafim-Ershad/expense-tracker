@@ -50,7 +50,7 @@ export default defineComponent({
     })
 
     data.value = chartConfig.data
-    console.log(getToday())
+    // console.log(getToday())
 
     return { dataSet, options, data }
   }
