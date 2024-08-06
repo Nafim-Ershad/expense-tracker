@@ -30,7 +30,7 @@ export default defineComponent({
 
     const { getTotalExpense, getTotalIncome, budget } = storeToRefs(budgetStore)
 
-    const dataSet = ref([getTotalExpense, getTotalIncome])
+    // const totalData = ref([getTotalExpense, getTotalIncome])
 
     const budgetValue = budget.value
 
@@ -41,18 +41,30 @@ export default defineComponent({
       datasets: []
     })
 
+    const today = getToday()
+
     budgetValue.forEach((value) => {
-      if (value.isExpense) {
-        chartConfig.data.datasets[1].data.push(value.amount)
-      } else {
-        chartConfig.data.datasets[0].data.push(value.amount)
+      const valueDate = new Date(value.created_at).toLocaleDateString()
+      const valueTime = new Date(value.created_at).toLocaleTimeString('en-US', { hourCycle: 'h24' })
+
+      if (today.date === valueDate) {
+        for (let i = 0; i < 24; i++) {
+          // TODO set the chart
+          // console.log(valueTime, `${String(i).padStart(2, '0')}:00:00`)
+          // console.log(valueTime < `${String(i).padStart(2, '0')}:00:00`)
+        }
       }
+
+      // if (value.isExpense) {
+      //   chartConfig.data.datasets[1].data.push(value.amount)
+      // } else {
+      //   chartConfig.data.datasets[0].data.push(value.amount)
+      // }
     })
 
     data.value = chartConfig.data
-    // console.log(getToday())
 
-    return { dataSet, options, data }
+    return { options, data }
   }
 })
 </script>

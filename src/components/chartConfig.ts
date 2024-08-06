@@ -1,5 +1,3 @@
-// import { supabase } from '@/lib/supabaseClient'
-
 export const data: any = {
   labels: [
     '00:00 AM',
@@ -31,12 +29,12 @@ export const data: any = {
     {
       label: 'Income',
       backgroundColor: '#66ff66',
-      data: []
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     },
     {
       label: 'Expense',
       backgroundColor: '#ff3939',
-      data: []
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
   ]
 }

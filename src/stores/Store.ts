@@ -23,9 +23,13 @@ export interface BudgetOptions {
 }
 
 type CurrentTab = 'dashboard' | 'settings' | 'history'
+type Language = 'en' | 'bn' | 'de'
 export interface OptionOptions {
   extendedSideBar: boolean
   currentTab: CurrentTab
+  theme: 'dark' | 'light'
+  language: Language
+  notification: boolean
 }
 
 export const useBudgetStore = defineStore('budgetStore', {
@@ -110,7 +114,10 @@ export const useBudgetStore = defineStore('budgetStore', {
 export const useOptionsStore = defineStore('optionStore', {
   state: (): OptionOptions => ({
     extendedSideBar: true,
-    currentTab: 'dashboard'
+    currentTab: 'dashboard',
+    theme: 'light',
+    language: 'en',
+    notification: false
   }),
   getters: {},
   actions: {
