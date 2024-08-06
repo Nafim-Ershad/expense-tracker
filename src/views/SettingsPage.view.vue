@@ -30,7 +30,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useOptionsStore } from '@/stores/Store'

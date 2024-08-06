@@ -1,9 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type Router } from 'vue-router'
 import HomePageView from '@/views/HomePage.view.vue'
 import ChartPageView from '@/views/ChartPage.view.vue'
 import SettingsPageView from '@/views/SettingsPage.view.vue'
 
-const router = createRouter({
+const router: Router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {

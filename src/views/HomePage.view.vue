@@ -42,9 +42,6 @@ import { useBudgetStore } from '@/stores/Store'
 export default defineComponent({
   // components: { IncomeExpenseComponent, HistoryContainerComponent },
   components: { ViewCardComponent, ChartContainerComponent, ListContainerComponent },
-  mounted: async () => {
-    await useBudgetStore().getAll
-  },
   setup() {
     const budgetStore = useBudgetStore()
     const { isLoading, budget, getTotal, getTotalIncome, getTotalExpense } =
